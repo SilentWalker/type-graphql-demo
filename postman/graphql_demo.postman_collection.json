@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "fd412dd0-e267-45cd-be20-c6987ee27fff",
+		"name": "graphql_demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addRecipe {\n  addRecipe(\n    newRecipeData: {\n      title: \"配方标题1\"\n      description: \"描述大于5个字\"\n      ingredients: [\"材料1\", \"材料2\"],\n      tag: [\"3\",\"2\"]\n    }\n  ) {\n    id,\n    title\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/graphql",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add recipe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation addRecipe {\n  addRecipe(\n    newRecipeData: {\n      title: \"配方标题1\"\n      description: \"描述大于5个字\"\n      ingredients: [\"材料1\", \"材料2\"],\n      tag: [\"3\",\"2\"]\n    }\n  ) {\n    id,\n    title\n  }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/graphql",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-L+k8g4MEovg5IRFtnhWv8mXRFGk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Aug 2019 14:09:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"addRecipe\": {\n            \"id\": 2,\n            \"title\": \"配方标题1\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get recipe list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n    recipes (title: \"标题\", tag:\"2\", skip:1,limit:2){\n        id, \n        title\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/graphql",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get recipe list",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    recipes (title: \"标题\", tag:\"2\", skip:1,limit:2){\n        id, \n        title\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/graphql",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"59-n48ofoL4TG8eFcNJURJlI46mHpg\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Aug 2019 14:16:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"recipes\": [\n            {\n                \"id\": 2,\n                \"title\": \"配方标题1\"\n            },\n            {\n                \"id\": 3,\n                \"title\": \"配方标题1\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get recipe by id or tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n    recipe (id:1, tag:\"1\"){\n        id,\n        title,\n        description,\n        ingredients,\n        tag\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/graphql",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get recipe by id or tag",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    recipe (id:1){\n        id,\n        title,\n        description,\n        ingredients,\n        tag\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/graphql",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8c-5vx7TCGqPLR/d8ajVyAKSTVezFY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Aug 2019 14:16:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"recipe\": {\n            \"id\": 1,\n            \"title\": \"配方标题\",\n            \"description\": \"描述大于5个字\",\n            \"ingredients\": [\n                \"材料1\",\n                \"材料2\"\n            ],\n            \"tag\": [\n                \"1\",\n                \"2\"\n            ]\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "use fragment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  leftComparison: recipe(id: 1) {\n    ...comparisonFields\n  }\n  rightComparison: recipe(id: 2) {\n    ...comparisonFields\n  }\n}\n\nfragment comparisonFields on Recipe {\n  id,\n  title,\n  description,\n  ingredients,\n  tag\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/graphql",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "use fragment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n  leftComparison: recipe(id: 1) {\n    ...comparisonFields\n  }\n  rightComparison: recipe(id: 2) {\n    ...comparisonFields\n  }\n}\n\nfragment comparisonFields on Recipe {\n  id,\n  title,\n  description,\n  ingredients,\n  tag\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/graphql",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "287"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11f-r/F06WwVCKbHFW6+YNzy1/M5ijM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Aug 2019 14:17:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"leftComparison\": {\n            \"id\": 1,\n            \"title\": \"配方标题\",\n            \"description\": \"描述大于5个字\",\n            \"ingredients\": [\n                \"材料1\",\n                \"材料2\"\n            ],\n            \"tag\": [\n                \"1\",\n                \"2\"\n            ]\n        },\n        \"rightComparison\": {\n            \"id\": 2,\n            \"title\": \"配方标题1\",\n            \"description\": \"描述大于5个字\",\n            \"ingredients\": [\n                \"材料1\",\n                \"材料2\"\n            ],\n            \"tag\": [\n                \"3\",\n                \"2\"\n            ]\n        }\n    }\n}"
+				}
+			]
+		}
+	]
+}
