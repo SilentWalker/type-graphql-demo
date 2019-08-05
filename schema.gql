@@ -20,7 +20,7 @@ type Query {
 }
 
 type Recipe {
-  id: Float!
+  id: Int!
   title: String!
   description: String
   ingredients: [String!]!

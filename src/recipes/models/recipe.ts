@@ -1,8 +1,8 @@
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, ObjectType, Int } from 'type-graphql'
 
 @ObjectType()
 export class Recipe {
-  @Field()
+  @Field(type => Int)
   id: number
 
   @Field()
